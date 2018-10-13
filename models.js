@@ -1,15 +1,30 @@
 const Sequelize = require('sequelize');
 
 const sequelize = new Sequelize({
-  database: 'some_app_name',
+  database: 'rucklog_db',
   dialect: 'postgres'
 });
 
+const User = sequelize.define('user', {
+  firstName: Sequelize.TEXT,
+  lastName: Sequelize.TEXT,
+  email: Sequelize.TEXT,
+  passwordDigest: Sequelize.TEXT
+});
 
-// Create models here
+const Activity = sequelize.define('activity', {
+  date: Sequelize.DATEONLY,
+  distance: Sequelize.INTEGER,
+  duration: Sequelize.TIME,
+  ruckWeight: Sequelize.INTEGER,
+  powerScore: Sequelize.INTEGER
+});
 
+User.hasMany(Activity);
+Activity.belongsTo(User);
 
 module.exports = {
-  // Export models
+  User,
+  Activity,
   sequelize: sequelize
 };

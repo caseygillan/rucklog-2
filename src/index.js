@@ -1,5 +1,26 @@
-import React from "react";
-import ReactDOM from "react-dom";
-import App from "./App";
+import React, { Component } from "react";
+import { BrowserRouter as Router, Link, Route } from "react-router-dom";
+// import ActivityPage from "../ActivityPage";
 
-ReactDOM.render(<App />, document.getElementById("root"));
+class App extends Component {
+  constructor(props) {
+    super(props)
+
+    this.state = {
+
+    }
+  }
+
+  render() {
+    return (
+      <div className="App">
+        <div>Hello</div>
+        {/* <ActivityPage /> */}
+      </div>
+    )
+  }
+}
+
+export default App;
+
+// ReactDOM.render(<App />, document.getElementById("root"));

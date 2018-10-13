@@ -4,13 +4,17 @@
   "private": true,
   "proxy": "http://localhost:5678",
   "dependencies": {
+    "bcrypt": "^3.0.1",
     "body-parser": "^1.18.3",
     "concurrently": "^4.0.1",
     "express": "^4.16.3",
+    "jsonwebtoken": "^8.3.0",
     "nodemon": "^1.18.4",
     "pg": "^7.4.3",
     "react": "^16.5.2",
     "react-dom": "^16.5.2",
+    "react-router": "^4.3.1",
+    "react-router-dom": "^4.3.1",
     "react-scripts": "1.1.5",
     "sequelize": "^4.38.1"
   },
@@ -20,6 +24,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
-    "db": "psql -f createDb.sql && node resetDb.js && node seed.js"
+    "db": "psql -f createDb.sql && node resetDb.js && node seed.js",
+    "heroku-postbuild": "npm run build"
   }
 }
