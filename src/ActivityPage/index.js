@@ -55,17 +55,24 @@ class ActivityPage extends Component {
 
   timer = () => {
       let second = parseInt(this.state.second);
+      let minute = parseInt(this.state.minute);
+      let hour = parseInt(this.state.hour);
+      if (second < 59) {
       this.setState({
         second: second + 1
       })
-    // } else {
-    //   second = 0;
-    //   minute += 1;
-    //   this.setState({
-    //     second: second,
-    //     minute: minute
-    //   })
-    // }
+    } else if (minute < 59) {
+      this.setState({
+        second: 0,
+        minute: minute + 1
+      })
+    } else {
+      this.setState({
+        second: 0,
+        minute: 0,
+        hour: hour + 1
+      })
+    }
   }
 
   // https://developers.google.com/maps/documentation/javascript/geometry
