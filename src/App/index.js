@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import "./style.css";
 import ActivityPage from "../ActivityPage";
 import Register from "../Register";
+import Login from "../Login";
 
 class App extends Component {
   render() {
@@ -9,6 +10,7 @@ class App extends Component {
     <div className="App">
       <ActivityPage />
       <Register />
+      <Login />
     </div>
     )
   }

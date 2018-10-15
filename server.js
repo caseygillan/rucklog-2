@@ -50,6 +50,38 @@ app.post('/api/register', async (request, response) => {
   });
 });
 
+app.post('/api/login', async (request, response) => {
+  const { email, password } = request.body;
+  if (!email || !password) {
+    response.status(400).json({
+      message: "Please Provide an Email and Password"
+    });
+    return;
+  }
+  const existingUser = await User.findOne({
+    where: {
+      email: email
+    }
+  });
+  if (existingUser === null) {
+    response.status(401).json({
+      message: "Invalid username or password."
+    });
+    return;
+  }
+  const isPasswordCorrect = await bcrypt.compare(password, existingUser.passwordDigest);
+  if (isPasswordCorrect) {
+    const token = jwt.sign({ userId: existingUser.id }, jwtSecret);
+    response.json({
+      token: token
+    });
+  } else {
+    response.status(401).json({
+      message: 'Invalid Username or Password'
+    })
+  }
+});
+
 app.listen(PORT, () => {
   console.log(`Express server listening on port ${PORT}`);
 });
