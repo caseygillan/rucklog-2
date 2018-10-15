@@ -54,22 +54,37 @@ class ActivityPage extends Component {
   }
 
   timer = () => {
-      let second = parseInt(this.state.second);
-      let minute = parseInt(this.state.minute);
-      let hour = parseInt(this.state.hour);
-      if (second < 59) {
-      this.setState({
-        second: second + 1
-      })
+    let second = parseInt(this.state.second);
+    let minute = parseInt(this.state.minute);
+    let hour = parseInt(this.state.hour);
+    if (second < 59) {
+      if (second < 9) {
+        second = second + 1
+        this.setState({
+          second: '0' + second
+        })
+      } else {
+        this.setState({
+          second: second + 1
+        })
+      }
     } else if (minute < 59) {
-      this.setState({
-        second: 0,
-        minute: minute + 1
-      })
+      if (minute < 9) {
+        minute = minute + 1
+        this.setState({
+          second: '00',
+          minute: '0' + minute
+        })
+      } else {
+        this.setState({
+          second: '00',
+          minute: minute + 1
+        })
+      }
     } else {
       this.setState({
-        second: 0,
-        minute: 0,
+        second: '00',
+        minute: '00',
         hour: hour + 1
       })
     }
@@ -95,7 +110,6 @@ class ActivityPage extends Component {
     this.setState({
       stopped: true,
     });
-
   }
 
   ruckPower = () => {
@@ -112,6 +126,7 @@ class ActivityPage extends Component {
     return (
       <div className="ActivityPage">
         <div>Distance: {this.state.distance}</div>
+        <div className="timer">Duration: {this.state.hour}:{this.state.minute}:{this.state.second}</div>
         <button className="start-button" onClick={this.onStart}>START</button>
         <button className="stop-button" onClick={this.onStop}>STOP</button>
       </div>
