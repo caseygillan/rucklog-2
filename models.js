@@ -15,7 +15,9 @@ const User = sequelize.define('user', {
 const Activity = sequelize.define('activity', {
   date: Sequelize.DATEONLY,
   distance: Sequelize.INTEGER,
-  duration: Sequelize.TIME,
+  hour: Sequelize.INTEGER,
+  minute: Sequelize.INTEGER,
+  second: Sequelize.INTEGER,
   ruckWeight: Sequelize.INTEGER,
   powerScore: Sequelize.INTEGER
 });
