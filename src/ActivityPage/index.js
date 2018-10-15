@@ -6,16 +6,34 @@ class ActivityPage extends Component {
 
     this.state = {
       distance: 0,
-      path: []
+      path: [],
+      hour: '00',
+      minute: '00',
+      second: '00',
+      ruckWeight: '',
+      stopped: false
     }
   }
 
   onStart = () => {
+    this.setState({
+      distance: 0,
+      path: [
+        {
+          lat: 40.748440,
+          lng: -73.985664
+        }
+      ],
+      stopped: false
+    });
+
+    this.startTimer = setInterval(this.timer, 1000);
+
     if (!navigator.geolocation) return;
 
     const activityPage = this;
 
-    navigator.geolocation.watchPosition(function (position) {
+    let watchID = navigator.geolocation.watchPosition(function (position) {
       var pos = {
         lat: position.coords.latitude,
         lng: position.coords.longitude
@@ -29,7 +47,25 @@ class ActivityPage extends Component {
 
       activityPage.calcPathLength(activityPage.state.path);
 
+      if (!activityPage.state.stopped) {
+        navigator.geolocation.clearWatch(watchID);
+      }
     });
+  }
+
+  timer = () => {
+      let second = parseInt(this.state.second);
+      this.setState({
+        second: second + 1
+      })
+    // } else {
+    //   second = 0;
+    //   minute += 1;
+    //   this.setState({
+    //     second: second,
+    //     minute: minute
+    //   })
+    // }
   }
 
   // https://developers.google.com/maps/documentation/javascript/geometry
@@ -42,11 +78,28 @@ class ActivityPage extends Component {
       var pos2 = new window.google.maps.LatLng(path[i + 1].lat, path[i + 1].lng);
       distance += window.google.maps.geometry.spherical.computeDistanceBetween(pos1, pos2);
     };
-    console.log(distance);
     this.setState({
-      distance: distance
+      distance: distance * 0.000621371
     });
   };
+
+  onStop = () => {
+    clearInterval(this.startTimer);
+    this.setState({
+      stopped: true,
+    });
+
+  }
+
+  ruckPower = () => {
+    const hour = parseFloat(this.state.hour);
+    const minute = parseFloat(this.state.minute / 60);
+    const second = parseFloat(this.state.second / 3600);
+    const convertedTime = hour + minute + second;
+    const rW = this.state.ruckWeight * this.state.distance;
+    const rP = (rW / convertedTime / 60).toFixed(2);
+    return rP;
+  }
 
   render() {
     return (
