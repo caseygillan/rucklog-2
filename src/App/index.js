@@ -3,14 +3,16 @@ import "./style.css";
 import ActivityPage from "../ActivityPage";
 import Register from "../Register";
 import Login from "../Login";
+import Profile from "../Profile";
 
 class App extends Component {
   render() {
     return (
     <div className="App">
-      <ActivityPage />
       <Register />
       <Login />
+      <ActivityPage />
+      <Profile />
     </div>
     )
   }
