@@ -86,6 +86,23 @@ app.post('/api/login', async (request, response) => {
   }
 });
 
+app.get('/api/current-user', async (request, response) => {
+  const token = request.headers['jwt-token'];
+  const verify = await jwt.verify(token, jwtSecret);
+
+  const user = await User.findOne({
+    where: {
+      id: verify.userId
+    }
+  });
+  response.json({
+    userId: user.id,
+    firstName: user.firstName,
+    lastName: user.lastName,
+    email: user.email,
+  })
+});
+
 if (process.env.NODE_ENV == "production") {
   app.get("/*", function(request, response) {
     response.sendFile(path.join(__dirname, "build", "index.html"));

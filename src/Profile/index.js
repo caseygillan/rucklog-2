@@ -6,9 +6,29 @@ class Profile extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      
+      user: '',
+      powerScore: '',
+      lifetimeMiles: '',
+      activityList: []
     }
   }
+
+  componentDidMount = async () => {
+    await this.fetchUser();
+    // this.fetchActivities();
+  };
+
+  fetchUser = async () => {
+    const response = await fetch('api/current-user', {
+      headers: {
+        'jwt-token': localStorage.getItem('user_jwt')
+      }
+    });
+    const user = await response.json();
+    this.setState({
+      user: user
+    });
+  };
 
   render() {
     return (
