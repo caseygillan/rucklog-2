@@ -11,20 +11,20 @@ class ActivityPage extends Component {
       minute: '00',
       second: '00',
       ruckWeight: '',
-      stopped: false
+      stopped: false,
+      start: '',
+      stop: ''
     }
   }
 
   onStart = () => {
+    let d = new Date();
+    
     this.setState({
       distance: 0,
-      path: [
-        // {
-        //   lat: 40.748440,
-        //   lng: -73.985664
-        // }
-      ],
-      stopped: false
+      path: [],
+      stopped: false,
+      start: d
     });
 
     this.startTimer = setInterval(this.timer, 1000);
@@ -53,43 +53,6 @@ class ActivityPage extends Component {
     });
   }
 
-  timer = () => {
-    let second = parseInt(this.state.second);
-    let minute = parseInt(this.state.minute);
-    let hour = parseInt(this.state.hour);
-    if (second < 59) {
-      if (second < 9) {
-        second = second + 1
-        this.setState({
-          second: '0' + second
-        })
-      } else {
-        this.setState({
-          second: second + 1
-        })
-      }
-    } else if (minute < 59) {
-      if (minute < 9) {
-        minute = minute + 1
-        this.setState({
-          second: '00',
-          minute: '0' + minute
-        })
-      } else {
-        this.setState({
-          second: '00',
-          minute: minute + 1
-        })
-      }
-    } else {
-      this.setState({
-        second: '00',
-        minute: '00',
-        hour: hour + 1
-      })
-    }
-  }
-
   // https://developers.google.com/maps/documentation/javascript/geometry
   // https://stackoverflow.com/questions/38183201/get-distance-by-array-of-latitude-and-longitude-on-google-map
 
@@ -105,11 +68,27 @@ class ActivityPage extends Component {
     });
   };
 
-  onStop = () => {
+  onStop = async () => {
     clearInterval(this.startTimer);
-    this.setState({
+    let d = new Date();
+    await this.setState({
       stopped: true,
+      stop: d
     });
+    let timeElapsed = this.state.stop - this.state.start;
+    let seconds = parseInt((timeElapsed / 1000) % 60);
+    let minutes = parseInt((timeElapsed / (1000 * 60)) % 60);
+    let hours = parseInt((timeElapsed / (1000 * 60 * 60)) % 24);
+    if (seconds < 10) {
+      seconds = '0' + seconds;
+    }
+    if (minutes < 10) {
+      minutes = '0' + minutes;
+    }
+    if (hours < 10) {
+      hours = '0' + hours;
+    }
+    console.log(`${hours}:${minutes}:${seconds}`);
   }
 
   ruckPower = () => {
