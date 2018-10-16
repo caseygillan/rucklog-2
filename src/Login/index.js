@@ -43,7 +43,7 @@ class Login extends Component {
     e.preventDefault();
   }
 
-  onInputChnge = e => {
+  onInputChange = e => {
     this.setState({
       [e.target.name]: e.target.value
     })
@@ -59,8 +59,8 @@ class Login extends Component {
     return (
       <div className="Login">
           <form onSubmit={this.login}>
-              <input type="text" value={this.state.email} placeholder="Email" onChange={this.onInputChnge} name="email" />
-              <input type="password" value={this.state.password} placeholder="Password" onChange={this.onInputChnge} name="password" />
+              <input type="text" value={this.state.email} placeholder="Email" onChange={this.onInputChange} name="email" />
+              <input type="password" value={this.state.password} placeholder="Password" onChange={this.onInputChange} name="password" />
               <button type="button" onClick={this.login}>Log In</button>
               <div>{this.state.errorMessage && <p className="login-error-message">{this.state.errorMessage}</p>}</div>
           </form>

@@ -12,8 +12,8 @@ class ActivityPage extends Component {
       hour: '00',
       minute: '00',
       second: '00',
-      ruckWeight: '35',
-      stopped: false,
+      ruckWeight: '',
+      stopped: true,
       start: '',
       stop: ''
     }
@@ -154,11 +154,30 @@ class ActivityPage extends Component {
     await response.json();
   };
 
+  onInputChange = e => {
+    this.setState({
+      [e.target.name]: e.target.value
+    })
+  }
+
   render() {
     return (
       <div className="ActivityPage">
+        <div>RUCK LOG 2.0</div>
         <div>Distance: {this.state.distance}</div>
         <div className="timer">Duration: {this.state.hour}:{this.state.minute}:{this.state.second}</div>
+        {this.state.stopped && (
+          <div>
+            <span>Enter Ruck Weight:</span>
+            <input className="ruck-weight" name="ruckWeight" type="text" placeholder="lbs" onChange={this.onInputChange} />
+          </div>
+        )}
+        {!this.state.stopped && (
+          <div>
+            <span>Ruck Weight: </span>
+            <span>{this.state.ruckWeight} lbs</span>
+          </div>
+        )}
         <button className="start-button" onClick={this.onStart}>START</button>
         <button className="stop-button" onClick={this.onStop}>STOP</button>
       </div>
