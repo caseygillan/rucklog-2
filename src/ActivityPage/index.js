@@ -19,10 +19,10 @@ class ActivityPage extends Component {
     this.setState({
       distance: 0,
       path: [
-        {
-          lat: 40.748440,
-          lng: -73.985664
-        }
+        // {
+        //   lat: 40.748440,
+        //   lng: -73.985664
+        // }
       ],
       stopped: false
     });
