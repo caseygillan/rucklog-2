@@ -1,4 +1,6 @@
 import React, { Component } from "react";
+import { BrowserRouter as Router, Link, Route, Redirect } from 'react-router-dom';
+
 
 class Register extends Component {
   constructor(props) {
@@ -67,6 +69,12 @@ class Register extends Component {
   }
 
   render() {
+    if (this.state.isRegistered) {
+      const { from } = this.props.location.state || { from: { pathname: "/profile" } };
+      return (
+        <Redirect to={from} />
+      )
+    }
     return (
       <div className="Register">
         <div className="title">RUCKLOG 2.0</div>
