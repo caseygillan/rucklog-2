@@ -103,8 +103,28 @@ app.get('/api/current-user', async (request, response) => {
   })
 });
 
+app.post('/api/activities', async (request, response) => {
+
+  const newActivity = await Activity.create({
+    date: request.body.date,
+    distance: request.body.distance,
+    hour: request.body.hour,
+    minute: request.body.minute,
+    second: request.body.second,
+    ruckWeight: request.body.ruckWeight,
+    powerScore: request.body.powerScore,
+    userId: request.body.userId
+  });
+  response.json(newActivity);
+});
+
+app.get('/api/activities', async (request, response) => {
+  const activities = await Activity.findAll({});
+  response.json(activities);
+});
+
 if (process.env.NODE_ENV == "production") {
-  app.get("/*", function(request, response) {
+  app.get("/*", function (request, response) {
     response.sendFile(path.join(__dirname, "build", "index.html"));
   });
 }

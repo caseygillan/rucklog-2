@@ -5,22 +5,44 @@ class ActivityPage extends Component {
     super(props)
 
     this.state = {
+      user: '',
+      date: '',
       distance: 0,
       path: [],
       hour: '00',
       minute: '00',
       second: '00',
-      ruckWeight: '',
+      ruckWeight: '35',
       stopped: false,
       start: '',
       stop: ''
     }
   }
 
+  componentDidMount = async () => {
+    await this.fetchUser();
+  };
+
+  fetchUser = async () => {
+    const response = await fetch('/api/current-user', {
+      headers: {
+        'jwt-token': localStorage.getItem('user_jwt')
+      }
+    });
+    const user = await response.json();
+    this.setState({
+      user: user
+    });
+  };
+
   onStart = () => {
     let d = new Date();
-    
+    let mm = d.getMonth() + 1;
+    let dd = d.getDate();
+    let yyyy = d.getFullYear();
+
     this.setState({
+      date: `${mm}/${dd}/${yyyy}`,
       distance: 0,
       path: [],
       stopped: false,
@@ -88,7 +110,13 @@ class ActivityPage extends Component {
     if (hours < 10) {
       hours = '0' + hours;
     }
-    console.log(`${hours}:${minutes}:${seconds}`);
+    await this.setState({
+      hour: hours,
+      minute: minutes,
+      second: seconds
+    });
+    this.ruckPower();
+    this.createActivity();
   }
 
   ruckPower = () => {
@@ -97,9 +125,34 @@ class ActivityPage extends Component {
     const second = parseFloat(this.state.second / 3600);
     const convertedTime = hour + minute + second;
     const rW = this.state.ruckWeight * this.state.distance;
-    const rP = (rW / convertedTime / 60).toFixed(2);
-    return rP;
+    const powerScore = (rW / convertedTime / 60).toFixed(2);
+    this.setState({
+      powerScore: powerScore
+    })
   }
+
+  createActivity = async () => {
+    console.log('createActivity');
+    const requestBody = JSON.stringify({
+      date: this.state.date,
+      distance: this.state.distance,
+      hour: this.state.hour,
+      minute: this.state.minute,
+      second: this.state.second,
+      ruckWeight: this.state.ruckWeight,
+      powerScore: this.state.powerScore,
+      userId: this.state.user.userId
+    });
+
+    const response = await fetch('/api/activities', {
+      method: 'POST',
+      body: requestBody,
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    });
+    await response.json();
+  };
 
   render() {
     return (

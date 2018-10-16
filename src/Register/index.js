@@ -24,8 +24,7 @@ class Register extends Component {
       firstName: this.state.firstName,
       lastName: this.state.lastName,
       email: this.state.email,
-      password: this.state.password,
-      favoriteTeam: this.state.favoriteTeam
+      password: this.state.password
     })
 
     if (this.state.firstName === '') {

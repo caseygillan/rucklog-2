@@ -18,7 +18,7 @@ const Activity = sequelize.define('activity', {
   minute: Sequelize.INTEGER,
   second: Sequelize.INTEGER,
   ruckWeight: Sequelize.INTEGER,
-  powerScore: Sequelize.INTEGER
+  powerScore: Sequelize.FLOAT
 });
 
 User.hasMany(Activity);

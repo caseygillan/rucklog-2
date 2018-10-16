@@ -19,7 +19,7 @@ class Profile extends Component {
   };
 
   fetchUser = async () => {
-    const response = await fetch('api/current-user', {
+    const response = await fetch('/api/current-user', {
       headers: {
         'jwt-token': localStorage.getItem('user_jwt')
       }
@@ -29,6 +29,15 @@ class Profile extends Component {
       user: user
     });
   };
+
+  // fetchActivities = async () => {
+  //   const response = await fetch(`/api/${this.state.user.userId}/userActivities`);
+  //   const activityList = await response.json();
+
+  //   this.setState({
+  //     activityList: activityList
+  //   })
+  // };
 
   render() {
     return (
