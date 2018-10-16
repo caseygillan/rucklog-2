@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { BrowserRouter as Router, Link, Route, Redirect } from 'react-router-dom';
 
 class Login extends Component {
   constructor(props) {
@@ -49,6 +50,12 @@ class Login extends Component {
   }
 
   render() {
+    if (this.state.isLoggedIn) {
+      const { from } = this.props.location.state || { from: { pathname: "/profile" } };
+      return (
+        <Redirect to={from} />
+      )
+    }
     return (
       <div className="Login">
           <form onSubmit={this.login}>
