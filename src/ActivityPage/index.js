@@ -33,7 +33,7 @@ class ActivityPage extends Component {
 
     const activityPage = this;
 
-    let watchID = navigator.geolocation.watchPosition(function (position) {
+    navigator.geolocation.watchPosition(function (position) {
       var pos = {
         lat: position.coords.latitude,
         lng: position.coords.longitude
@@ -47,9 +47,9 @@ class ActivityPage extends Component {
 
       activityPage.calcPathLength(activityPage.state.path);
 
-      if (!activityPage.state.stopped) {
-        navigator.geolocation.clearWatch(watchID);
-      }
+      // if (!activityPage.state.stopped) {
+      //   navigator.geolocation.clearWatch(watchID);
+      // }
     });
   }
 
