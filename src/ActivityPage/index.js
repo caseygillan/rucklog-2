@@ -21,6 +21,7 @@ class ActivityPage extends Component {
 
   componentDidMount = async () => {
     await this.fetchUser();
+    navigator.geolocation.getCurrentPosition();
   };
 
   fetchUser = async () => {
