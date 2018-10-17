@@ -142,6 +142,23 @@ app.delete('/api/activity/:id', async (request, response) => {
   await activity.destroy();
 });
 
+app.put('/api/users/:id', async (request, response) => {
+  const userId = request.params.id;
+  const user = await User.findOne({
+    where: {
+      id: userId
+    }
+  })
+  if (request.body.firstName !== '') {
+  user.firstName = request.body.firstName
+  }
+  if (request.body.lastName !== '') {
+    user.lastName = request.body.lastName
+  }
+  await user.save();
+  response.sendStatus(200);
+});
+
 if (process.env.NODE_ENV == "production") {
   app.get("/*", function (request, response) {
     response.sendFile(path.join(__dirname, "build", "index.html"));

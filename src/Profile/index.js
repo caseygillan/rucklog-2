@@ -9,7 +9,10 @@ class Profile extends Component {
       user: '',
       powerScore: '',
       lifetimeMiles: '',
-      activityList: []
+      activityList: [],
+      edit: false,
+      updateFirstName: '',
+      updateLastName: ''
     }
   }
 
@@ -39,22 +42,67 @@ class Profile extends Component {
     })
   };
 
+  edit = () => {
+    this.setState({
+      edit: true
+    })
+  }
+
+  update = async () => {
+    console.log(this.state.user.userId)
+    const requestBody = await JSON.stringify({
+      firstName: this.state.updateFirstName,
+      lastName: this.state.updateLastName
+    })
+    const response = await fetch(`/api/users/${this.state.user.userId}`, {
+      method: 'PUT',
+      body: requestBody,
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    });
+    this.setState({
+      edit: false
+    });
+    window.location.reload();
+  }
+
+  onInputChange = e => {
+    this.setState({
+      [e.target.name]: e.target.value
+    })
+  }
+
   render() {
     return (
       <div className="Profile">
-          <Link to="/activity"><button className="new-activity">Start New Ruck</button></Link>
-          <div>Name</div>
-          <div>Overall Power Score:</div>
-          <div>Lifetime Miles Rucked:</div>
-          <div>Activities</div>
-          {this.state.activityList.map((activity, index) => {
-            return (
-          <Activity 
-            key={index}
-            activity={activity}
+        <Link to="/activity"><button className="new-activity">Start New Ruck</button></Link>
+        {!this.state.edit && (
+          <div>
+            <div>{this.state.user.firstName} {this.state.user.lastName}</div>
+            <button className="edit-button" onClick={this.edit}>Edit Name</button>
+          </div>
+        )}
+        {this.state.edit && (
+          <div>
+            <form>
+              <input className="update-input" type="text" placeholder={this.state.user.firstName} onChange={this.onInputChange} name="updateFirstName" />
+              <input className="update-input" type="text" placeholder={this.state.user.lastName} onChange={this.onInputChange} name="updateLastName" />
+            </form>
+            <button className="update-button" onClick={this.update}>Update</button>
+          </div>
+        )}
+        <div>Overall Power Score:</div>
+        <div>Lifetime Miles Rucked:</div>
+        <div>Activities</div>
+        {this.state.activityList.map((activity, index) => {
+          return (
+            <Activity
+              key={index}
+              activity={activity}
             />
-            )
-          })
+          )
+        })
         }
       </div>
     )
