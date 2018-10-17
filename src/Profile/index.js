@@ -46,6 +46,7 @@ class Profile extends Component {
           <div>Name</div>
           <div>Overall Power Score:</div>
           <div>Lifetime Miles Rucked:</div>
+          <div>Activities</div>
           {this.state.activityList.map((activity, index) => {
             return (
           <Activity 

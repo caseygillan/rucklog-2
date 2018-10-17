@@ -132,6 +132,16 @@ app.get('/api/:id/userActivities', async (request, response) => {
   response.json(activities);
 });
 
+app.delete('/api/activity/:id', async (request, response) => {
+  const activityId = request.params.id;
+  const activity = await Activity.findOne({
+    where: {
+      id: activityId
+    }
+  });
+  await activity.destroy();
+});
+
 if (process.env.NODE_ENV == "production") {
   app.get("/*", function (request, response) {
     response.sendFile(path.join(__dirname, "build", "index.html"));
