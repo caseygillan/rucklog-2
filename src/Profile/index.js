@@ -15,7 +15,7 @@ class Profile extends Component {
 
   componentDidMount = async () => {
     await this.fetchUser();
-    // this.fetchActivities();
+    this.fetchActivities();
   };
 
   fetchUser = async () => {
@@ -30,14 +30,14 @@ class Profile extends Component {
     });
   };
 
-  // fetchActivities = async () => {
-  //   const response = await fetch(`/api/${this.state.user.userId}/userActivities`);
-  //   const activityList = await response.json();
+  fetchActivities = async () => {
+    const response = await fetch(`/api/${this.state.user.userId}/userActivities`);
+    const activityList = await response.json();
 
-  //   this.setState({
-  //     activityList: activityList
-  //   })
-  // };
+    this.setState({
+      activityList: activityList
+    })
+  };
 
   render() {
     return (
@@ -46,7 +46,15 @@ class Profile extends Component {
           <div>Name</div>
           <div>Overall Power Score:</div>
           <div>Lifetime Miles Rucked:</div>
-          <Activity />
+          {this.state.activityList.map((activity, index) => {
+            return (
+          <Activity 
+            key={index}
+            activity={activity}
+            />
+            )
+          })
+        }
       </div>
     )
   }

@@ -123,6 +123,15 @@ app.get('/api/activities', async (request, response) => {
   response.json(activities);
 });
 
+app.get('/api/:id/userActivities', async (request, response) => {
+  const activities = await Activity.findAll({
+    where: {
+      userId: request.params.id
+    }
+  })
+  response.json(activities);
+});
+
 if (process.env.NODE_ENV == "production") {
   app.get("/*", function (request, response) {
     response.sendFile(path.join(__dirname, "build", "index.html"));
