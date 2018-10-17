@@ -64,6 +64,7 @@ class Login extends Component {
               <button type="button" onClick={this.login}>Log In</button>
               <div>{this.state.errorMessage && <p className="login-error-message">{this.state.errorMessage}</p>}</div>
           </form>
+          <div>New Here? Click To <Link to="/register">Register</Link></div>
       </div>
     )
   }
