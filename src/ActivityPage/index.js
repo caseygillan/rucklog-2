@@ -81,7 +81,7 @@ class ActivityPage extends Component {
 
   calcPathLength = (path) => {
     var distance = 0;
-    for (var i = 0; i < path.length - 1; i++) {
+    for (var i = 1; i < path.length - 1; i++) {
       var pos1 = new window.google.maps.LatLng(path[i].lat, path[i].lng);
       var pos2 = new window.google.maps.LatLng(path[i + 1].lat, path[i + 1].lng);
       distance += window.google.maps.geometry.spherical.computeDistanceBetween(pos1, pos2);
