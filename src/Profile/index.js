@@ -36,9 +36,32 @@ class Profile extends Component {
   fetchActivities = async () => {
     const response = await fetch(`/api/${this.state.user.userId}/userActivities`);
     const activityList = await response.json();
-
     this.setState({
       activityList: activityList
+    });
+    this.calcLifetimeMiles();
+    this.calcPowerScore();
+  };
+
+  calcLifetimeMiles = () => {
+    let lifetimeMiles = 0;
+    this.state.activityList.map((activity) => {
+      lifetimeMiles = lifetimeMiles + activity.distance;
+    });
+    this.setState({
+      lifetimeMiles: lifetimeMiles
+    })
+  };
+
+  calcPowerScore = () => {
+    let powerScore = 0;
+    let count = 0;
+    this.state.activityList.map((activity) => {
+      count = count + 1;
+      powerScore = (powerScore + activity.powerScore) / count;
+    });
+    this.setState({
+      powerScore: powerScore
     })
   };
 
