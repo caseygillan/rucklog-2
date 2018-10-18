@@ -183,7 +183,7 @@ class ActivityPage extends Component {
         {this.state.stopped && (
           <div>
             <span>Enter Ruck Weight:</span>
-            <input className="ruck-weight" name="ruckWeight" type="text" placeholder="lbs" onChange={this.onInputChange} />
+            <input className="ruck-weight" name="ruckWeight" type="number" placeholder="lbs" onChange={this.onInputChange} />
           </div>
         )}
         {!this.state.stopped && (
