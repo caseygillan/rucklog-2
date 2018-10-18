@@ -16,7 +16,8 @@ class ActivityPage extends Component {
       ruckWeight: '',
       stopped: true,
       start: '',
-      stop: ''
+      stop: '',
+      duration: ''
     }
   }
 
@@ -109,7 +110,8 @@ class ActivityPage extends Component {
     await this.setState({
       hour: hours,
       minute: minutes,
-      second: seconds
+      second: seconds,
+      duration: `${hours}:${minutes}:${seconds}`
     });
   }
 
@@ -144,6 +146,7 @@ class ActivityPage extends Component {
       second: this.state.second,
       ruckWeight: this.state.ruckWeight,
       powerScore: this.state.powerScore,
+      duration: this.state.duration,
       userId: this.state.user.userId
     });
 

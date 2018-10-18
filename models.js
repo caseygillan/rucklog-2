@@ -13,12 +13,13 @@ const User = sequelize.define('user', {
 
 const Activity = sequelize.define('activity', {
   date: Sequelize.DATEONLY,
-  distance: Sequelize.INTEGER,
+  distance: Sequelize.FLOAT,
   hour: Sequelize.INTEGER,
   minute: Sequelize.INTEGER,
   second: Sequelize.INTEGER,
   ruckWeight: Sequelize.INTEGER,
-  powerScore: Sequelize.FLOAT
+  powerScore: Sequelize.FLOAT,
+  duration: Sequelize.STRING
 });
 
 User.hasMany(Activity);

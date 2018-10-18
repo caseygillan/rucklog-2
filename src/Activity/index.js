@@ -9,7 +9,6 @@ class Activity extends Component {
   }
 
   delete = async () => {
-    console.log(this.props.activity.id);
     const response = await fetch(`/api/activity/${this.props.activity.id}`, {
       method: 'DELETE',
       headers: {
@@ -24,7 +23,7 @@ class Activity extends Component {
         <div>{this.props.activity.date}</div>
         <div className="activity-info">
           <div>{this.props.activity.distance} mi<br/>DISTANCE</div>
-          <div>{this.props.activity.hour}:{this.props.activity.minute}:{this.props.activity.second}<br/>DURATION</div>
+          <div>{this.props.activity.duration}<br/>DURATION</div>
           <div>{this.props.activity.ruckWeight} lbs<br/>RUCK WEIGHT</div>
           <div>{this.props.activity.powerScore}<br/>POWER SCORE</div>
           <button className="delete-button" onClick={this.delete}>Delete</button>

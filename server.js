@@ -113,6 +113,7 @@ app.post('/api/activities', async (request, response) => {
     second: request.body.second,
     ruckWeight: request.body.ruckWeight,
     powerScore: request.body.powerScore,
+    duration: request.body.duration,
     userId: request.body.userId
   });
   response.json(newActivity);
