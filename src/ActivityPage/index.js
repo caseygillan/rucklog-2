@@ -76,14 +76,11 @@ class ActivityPage extends Component {
     });
   }
 
-  // https://developers.google.com/maps/documentation/javascript/geometry
-  // https://stackoverflow.com/questions/38183201/get-distance-by-array-of-latitude-and-longitude-on-google-map
-
   calcPathLength = (path) => {
     var distance = 0;
-    for (var i = 1; i < path.length - 1; i++) {
-      var pos1 = new window.google.maps.LatLng(path[i].lat, path[i].lng);
-      var pos2 = new window.google.maps.LatLng(path[i + 1].lat, path[i + 1].lng);
+    for (let i = 0; i < path.length - 1; i++) {
+      let pos1 = new window.google.maps.LatLng(path[i].lat, path[i].lng);
+      let pos2 = new window.google.maps.LatLng(path[i + 1].lat, path[i + 1].lng);
       distance += window.google.maps.geometry.spherical.computeDistanceBetween(pos1, pos2);
     };
     this.setState({
@@ -118,11 +115,15 @@ class ActivityPage extends Component {
 
   onStop = async () => {
     clearInterval(this.startTimer);
-    await this.setState({
-      stopped: true,
-    });
-    this.ruckPower();
-    this.createActivity();
+    if (window.confirm('Done With This Activity? You Can Delete Later From Profile Page.')) {
+      await this.setState({
+        stopped: true,
+      });
+      this.ruckPower();
+      this.createActivity();
+    } else {
+      this.startTimer = setInterval(this.timer, 1000);
+    }
   }
 
   ruckPower = () => {
