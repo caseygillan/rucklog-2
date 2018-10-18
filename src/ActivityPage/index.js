@@ -41,6 +41,7 @@ class ActivityPage extends Component {
   onStart = () => {
     if (this.state.ruckWeight === '') {
       alert('Must Include Ruck Weight');
+      return;
     } else {
       let d = new Date();
       let mm = d.getMonth() + 1;
@@ -76,6 +77,7 @@ class ActivityPage extends Component {
         activityPage.calcPathLength(activityPage.state.path);
 
         if (activityPage.state.stopped === true) {
+          console.log('still running');
           navigator.geolocation.clearWatch(watchID);
         }
       });
@@ -122,10 +124,10 @@ class ActivityPage extends Component {
 
   onStop = async () => {
     clearInterval(this.startTimer);
-    alert(`Distance: ${this.state.distance} mi\nDuration: ${this.state.hour}:${this.state.minute}:${this.state.second}\nRuck Weight: ${this.state.ruckWeight} lbs`);
-    await this.setState({
+    this.setState({
       stopped: true,
     });
+    alert(`Distance: ${this.state.distance} mi\nDuration: ${this.state.hour}:${this.state.minute}:${this.state.second}\nRuck Weight: ${this.state.ruckWeight} lbs`);
     this.ruckPower();
     this.createActivity();
   }
@@ -175,25 +177,25 @@ class ActivityPage extends Component {
     return (
       <div className="ActivityPage">
         <div className="title">RUCK LOG 2.0</div>
-        <Link to="/profile"><button>PROFILE</button></Link>
         <div className="tracker">
-          <div>{this.state.distance}<br />DISTANCE</div>
-          <div className="timer">{this.state.hour}:{this.state.minute}:{this.state.second}<br />TIMER</div>
+          <div className="distance">{this.state.distance}<br /><span>DISTANCE</span></div>
+          <div className="timer">{this.state.hour}:{this.state.minute}:{this.state.second}<br /><span>TIME</span></div>
         </div>
         {this.state.stopped && (
           <div>
             <span>Enter Ruck Weight:</span>
-            <input className="ruck-weight" name="ruckWeight" type="number" placeholder="lbs" onChange={this.onInputChange} />
+            <input className="ruck-weight" name="ruckWeight" type="number" placeholder="lbs" size="4" onChange={this.onInputChange} />
+            <button className="start-button" onClick={this.onStart}>START</button>
           </div>
         )}
         {!this.state.stopped && (
           <div>
             <span>Ruck Weight: </span>
             <span>{this.state.ruckWeight} lbs</span>
+            <Link to="/profile"><button className="stop-button" onClick={this.onStop}>STOP</button></Link>
           </div>
         )}
-        <button className="start-button" onClick={this.onStart}>START</button>
-        <Link to="/profile"><button className="stop-button" onClick={this.onStop}>STOP</button></Link>
+        <Link to="/profile"><button className="profile-button">BACK TO PROFILE</button></Link>
       </div>
     )
   }
