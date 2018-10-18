@@ -9,12 +9,15 @@ class Activity extends Component {
   }
 
   delete = async () => {
-    const response = await fetch(`/api/activity/${this.props.activity.id}`, {
-      method: 'DELETE',
-      headers: {
-        'Content-Type': 'application/json'
-      }
-    });
+    if (window.confirm('Are you sure you want to delete?')) {
+      window.location.reload();
+      const response = await fetch(`/api/activity/${this.props.activity.id}`, {
+        method: 'DELETE',
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      });
+    }
   }
 
   render() {
@@ -22,10 +25,10 @@ class Activity extends Component {
       <div className="Activity">
         <div>{this.props.activity.date}</div>
         <div className="activity-info">
-          <div>{this.props.activity.distance} mi<br/>DISTANCE</div>
-          <div>{this.props.activity.duration}<br/>DURATION</div>
-          <div>{this.props.activity.ruckWeight} lbs<br/>RUCK WEIGHT</div>
-          <div>{this.props.activity.powerScore}<br/>POWER SCORE</div>
+          <div>{this.props.activity.distance} mi<br />DISTANCE</div>
+          <div>{this.props.activity.duration}<br />DURATION</div>
+          <div>{this.props.activity.ruckWeight} lbs<br />RUCK WEIGHT</div>
+          <div>{this.props.activity.powerScore}<br />POWER SCORE</div>
           <button className="delete-button" onClick={this.delete}>Delete</button>
         </div>
       </div>

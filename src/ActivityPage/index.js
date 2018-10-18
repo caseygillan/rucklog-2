@@ -38,43 +38,47 @@ class ActivityPage extends Component {
   };
 
   onStart = () => {
-    let d = new Date();
-    let mm = d.getMonth() + 1;
-    let dd = d.getDate();
-    let yyyy = d.getFullYear();
+    if (this.state.ruckWeight === '') {
+      alert('Must Include Ruck Weight');
+    } else {
+      let d = new Date();
+      let mm = d.getMonth() + 1;
+      let dd = d.getDate();
+      let yyyy = d.getFullYear();
 
-    this.setState({
-      date: `${mm}/${dd}/${yyyy}`,
-      distance: 0,
-      path: [],
-      stopped: false,
-      start: d
-    });
-
-    this.startTimer = setInterval(this.timer, 1000);
-
-    if (!navigator.geolocation) return;
-
-    const activityPage = this;
-
-    let watchID = navigator.geolocation.watchPosition(function (position) {
-      var pos = {
-        lat: position.coords.latitude,
-        lng: position.coords.longitude
-      };
-
-      activityPage.setState(prevState => {
-        return { path: [...prevState.path, pos] }
+      this.setState({
+        date: `${mm}/${dd}/${yyyy}`,
+        distance: 0,
+        path: [],
+        stopped: false,
+        start: d
       });
 
-      console.log(activityPage.state.path);
+      this.startTimer = setInterval(this.timer, 1000);
 
-      activityPage.calcPathLength(activityPage.state.path);
+      if (!navigator.geolocation) return;
 
-      if (activityPage.state.stopped === true) {
-        navigator.geolocation.clearWatch(watchID);
-      }
-    });
+      const activityPage = this;
+
+      let watchID = navigator.geolocation.watchPosition(function (position) {
+        var pos = {
+          lat: position.coords.latitude,
+          lng: position.coords.longitude
+        };
+
+        activityPage.setState(prevState => {
+          return { path: [...prevState.path, pos] }
+        });
+
+        console.log(activityPage.state.path);
+
+        activityPage.calcPathLength(activityPage.state.path);
+
+        if (activityPage.state.stopped === true) {
+          navigator.geolocation.clearWatch(watchID);
+        }
+      });
+    }
   }
 
   calcPathLength = (path) => {
@@ -117,12 +121,12 @@ class ActivityPage extends Component {
 
   onStop = async () => {
     clearInterval(this.startTimer);
-      await this.setState({
-        stopped: true,
-      });
-      this.ruckPower();
-      this.createActivity();
-      alert(`Distance: ${this.state.distance} mi\nDuration: ${this.state.hour}:${this.state.minute}:${this.state.second}\nRuck Weight: ${this.state.ruckWeight} lbs`);
+    alert(`Distance: ${this.state.distance} mi\nDuration: ${this.state.hour}:${this.state.minute}:${this.state.second}\nRuck Weight: ${this.state.ruckWeight} lbs`);
+    await this.setState({
+      stopped: true,
+    });
+    this.ruckPower();
+    this.createActivity();
   }
 
   ruckPower = () => {
