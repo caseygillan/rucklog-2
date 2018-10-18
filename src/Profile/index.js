@@ -86,7 +86,7 @@ class Profile extends Component {
     this.setState({
       edit: false
     });
-    window.location.reload();
+    this.fetchUser();
   }
 
   onInputChange = e => {
@@ -133,7 +133,7 @@ class Profile extends Component {
             <Activity
               key={index}
               activity={activity}
-              delete={this.delete}
+              delete={this.fetchActivities}
             />
           )
         })

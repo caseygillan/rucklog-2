@@ -15,7 +15,7 @@ class Activity extends Component {
         'Content-Type': 'application/json'
       }
     });
-    document.location.reload(true);
+    this.props.delete();
   }
 
 
