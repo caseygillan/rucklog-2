@@ -9,16 +9,15 @@ class Activity extends Component {
   }
 
   delete = async () => {
-    if (window.confirm('Are you sure you want to delete?')) {
-      window.location.reload();
-      const response = await fetch(`/api/activity/${this.props.activity.id}`, {
-        method: 'DELETE',
-        headers: {
-          'Content-Type': 'application/json'
-        }
-      });
-    }
+    window.location.reload();
+    const response = await fetch(`/api/activity/${this.props.activity.id}`, {
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    });
   }
+
 
   render() {
     return (

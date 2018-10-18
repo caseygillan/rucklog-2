@@ -71,13 +71,7 @@ class Profile extends Component {
     })
   }
 
-  delete = () => {
-    console.log('delete');
-    this.fetchActivities();
-  }
-
   update = async () => {
-    console.log(this.state.user.userId)
     const requestBody = await JSON.stringify({
       firstName: this.state.updateFirstName,
       lastName: this.state.updateLastName
