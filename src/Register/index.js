@@ -77,7 +77,7 @@ class Register extends Component {
     return (
       <div className="Register">
         <div className="title">RUCKLOG 2.0</div>
-        <form onSubmit={this.register}>
+        <form className="register-form" onSubmit={this.register}>
           <input className="registration-input" type="text" value={this.state.firstName} placeholder="First Name" onChange={this.onInputChange} name="firstName" />
           <input className="registration-input" type="text" value={this.state.lastName} placeholder="Last Name" onChange={this.onInputChange} name="lastName" />
           <input className="registration-input" type="text" value={this.state.email} placeholder="Email" onChange={this.onInputChange} name="email" />

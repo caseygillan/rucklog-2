@@ -21,7 +21,6 @@ class ActivityPage extends Component {
 
   componentDidMount = async () => {
     await this.fetchUser();
-    navigator.geolocation.getCurrentPosition();
   };
 
   fetchUser = async () => {
@@ -133,7 +132,6 @@ class ActivityPage extends Component {
   }
 
   createActivity = async () => {
-    console.log('createActivity');
     const requestBody = JSON.stringify({
       date: this.state.date,
       distance: this.state.distance,
@@ -164,9 +162,11 @@ class ActivityPage extends Component {
   render() {
     return (
       <div className="ActivityPage">
-        <div>RUCK LOG 2.0</div>
-        <div>Distance: {this.state.distance}</div>
-        <div className="timer">Duration: {this.state.hour}:{this.state.minute}:{this.state.second}</div>
+        <div className="title">RUCK LOG 2.0</div>
+        <div className="tracker">
+          <div>{this.state.distance}<br />DISTANCE</div>
+          <div className="timer">{this.state.hour}:{this.state.minute}:{this.state.second}<br />TIMER</div>
+        </div>
         {this.state.stopped && (
           <div>
             <span>Enter Ruck Weight:</span>

@@ -99,25 +99,31 @@ class Profile extends Component {
   render() {
     return (
       <div className="Profile">
-        <Link to="/activity"><button className="new-activity">Start New Ruck</button></Link>
-        {!this.state.edit && (
-          <div>
-            <div>{this.state.user.firstName} {this.state.user.lastName}</div>
-            <button className="edit-button" onClick={this.edit}>Edit Name</button>
-          </div>
-        )}
-        {this.state.edit && (
-          <div>
-            <form>
-              <input className="update-input" type="text" placeholder={this.state.user.firstName} onChange={this.onInputChange} name="updateFirstName" />
-              <input className="update-input" type="text" placeholder={this.state.user.lastName} onChange={this.onInputChange} name="updateLastName" />
-            </form>
-            <button className="update-button" onClick={this.update}>Update</button>
-          </div>
-        )}
-        <div>Overall Power Score:</div>
-        <div>Lifetime Miles Rucked:</div>
-        <div>Activities</div>
+        <div className="profile-header">
+          <div className="title-small">RUCK LOG 2.0</div>
+          <Link to="/activity"><button className="new-activity">Start New Ruck</button></Link>
+        </div>
+        <div className="info">
+          {!this.state.edit && (
+            <div className="name">
+              <div>{this.state.user.firstName} {this.state.user.lastName}</div>
+              <button className="edit-button" onClick={this.edit}>Edit Name</button>
+            </div>
+          )}
+          {this.state.edit && (
+            <div className="name">
+              <form>
+                <input className="update-input" type="text" placeholder={this.state.user.firstName} onChange={this.onInputChange} name="updateFirstName" />
+                <input className="update-input" type="text" placeholder={this.state.user.lastName} onChange={this.onInputChange} name="updateLastName" />
+              </form>
+              <button className="update-button" onClick={this.update}>Update</button>
+            </div>
+          )}
+          <div>Overall Power Score:</div>
+          <div>Lifetime Miles Rucked:</div>
+          <div>Activities</div>
+        </div>
+        <div className="activity-list">
         {this.state.activityList.map((activity, index) => {
           return (
             <Activity
@@ -127,6 +133,7 @@ class Profile extends Component {
           )
         })
         }
+        </div>
       </div>
     )
   }

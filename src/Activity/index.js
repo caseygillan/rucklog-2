@@ -22,11 +22,13 @@ class Activity extends Component {
     return (
       <div className="Activity">
         <div>{this.props.activity.date}</div>
-        <div>{this.props.activity.distance}</div>
-        <div>{this.props.activity.hour}:{this.props.activity.minute}:{this.props.activity.second}</div>
-        <div>{this.props.activity.ruckWeight}</div>
-        <div>{this.props.activity.powerScore}</div>
-        <button className="delete-button" onClick={this.delete}>Delete</button>
+        <div className="activity-info">
+          <div>{this.props.activity.distance} mi<br/>DISTANCE</div>
+          <div>{this.props.activity.hour}:{this.props.activity.minute}:{this.props.activity.second}<br/>DURATION</div>
+          <div>{this.props.activity.ruckWeight} lbs<br/>RUCK WEIGHT</div>
+          <div>{this.props.activity.powerScore}<br/>POWER SCORE</div>
+          <button className="delete-button" onClick={this.delete}>Delete</button>
+        </div>
       </div>
     )
   }
