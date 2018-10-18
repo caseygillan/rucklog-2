@@ -36,7 +36,7 @@ class Profile extends Component {
   fetchActivities = async () => {
     const response = await fetch(`/api/${this.state.user.userId}/userActivities`);
     const activityList = await response.json();
-    this.setState({
+    await this.setState({
       activityList: activityList
     });
     this.calcLifetimeMiles();
@@ -124,8 +124,8 @@ class Profile extends Component {
               <button className="update-button" onClick={this.update}>Update</button>
             </div>
           )}
-          <div>Overall Power Score:</div>
-          <div>Lifetime Miles Rucked:</div>
+          <div>Overall Power Score: {this.state.powerScore}</div>
+          <div>Lifetime Miles Rucked: {this.state.lifetimeMiles}</div>
           <div>Activities</div>
         </div>
         <div className="activity-list">
