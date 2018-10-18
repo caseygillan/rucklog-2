@@ -101,12 +101,17 @@ class Profile extends Component {
     })
   }
 
+  logout = () => {
+    localStorage.clear();
+  }
+
   render() {
     return (
       <div className="Profile">
         <div className="profile-header">
           <div className="title-small">RUCK LOG 2.0</div>
           <Link to="/activity"><button className="new-activity">Start New Ruck</button></Link>
+          <Link to="/"><button className="logout" onClick={this.logout}>Log Out</button></Link>
         </div>
         <div className="info">
           {!this.state.edit && (
