@@ -17,7 +17,8 @@ class ActivityPage extends Component {
       stopped: true,
       start: '',
       stop: '',
-      duration: ''
+      duration: '',
+      powerScore: 0
     }
   }
 
