@@ -46,7 +46,7 @@ body {
 
 .activity-list {
   display: flex;
-  flex-direction: column-reverse;
+  flex-direction: column;
   height: 70%;
   overflow: auto;
 }

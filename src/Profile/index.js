@@ -134,7 +134,7 @@ class Profile extends Component {
           <div>Activities</div>
         </div>
         <div className="activity-list">
-        {this.state.activityList.map((activity, index) => {
+        {this.state.activityList.reverse().map((activity, index) => {
           return (
             <Activity
               key={index}
