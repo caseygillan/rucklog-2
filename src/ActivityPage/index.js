@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { BrowserRouter as Router, Link, Route } from "react-router-dom";
 
 class ActivityPage extends Component {
   constructor(props) {
@@ -90,11 +91,9 @@ class ActivityPage extends Component {
     });
   };
 
-  onStop = async () => {
-    clearInterval(this.startTimer);
+  timer = async () => {
     let d = new Date();
     await this.setState({
-      stopped: true,
       stop: d
     });
     let timeElapsed = this.state.stop - this.state.start;
@@ -114,6 +113,13 @@ class ActivityPage extends Component {
       hour: hours,
       minute: minutes,
       second: seconds
+    });
+  }
+
+  onStop = async () => {
+    clearInterval(this.startTimer);
+    await this.setState({
+      stopped: true,
     });
     this.ruckPower();
     this.createActivity();
@@ -163,6 +169,7 @@ class ActivityPage extends Component {
     return (
       <div className="ActivityPage">
         <div className="title">RUCK LOG 2.0</div>
+        <Link to="/profile"><button>PROFILE</button></Link>
         <div className="tracker">
           <div>{this.state.distance}<br />DISTANCE</div>
           <div className="timer">{this.state.hour}:{this.state.minute}:{this.state.second}<br />TIMER</div>

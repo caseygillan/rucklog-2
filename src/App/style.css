@@ -36,6 +36,11 @@ body {
   display: flex;
 }
 
+.activity-list {
+  display: flex;
+  flex-direction: column-reverse;
+}
+
 .Activity {
   text-align: left;
   background-color: rgb(92, 123, 147);
