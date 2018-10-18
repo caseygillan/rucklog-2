@@ -9,13 +9,13 @@ class Activity extends Component {
   }
 
   delete = async () => {
-    document.location.reload(true);
-    const response = await fetch(`/api/activity/${this.props.activity.id}`, {
+    await fetch(`/api/activity/${this.props.activity.id}`, {
       method: 'DELETE',
       headers: {
         'Content-Type': 'application/json'
       }
     });
+    document.location.reload(true);
   }
 
 

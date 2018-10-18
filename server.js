@@ -141,6 +141,7 @@ app.delete('/api/activity/:id', async (request, response) => {
     }
   });
   await activity.destroy();
+  response.status(200).send("Log Deleted");
 });
 
 app.put('/api/users/:id', async (request, response) => {
