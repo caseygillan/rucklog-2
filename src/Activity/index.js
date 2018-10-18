@@ -9,7 +9,7 @@ class Activity extends Component {
   }
 
   delete = async () => {
-    setTimeout(window.location.reload(), 500);
+    document.location.reload(true);
     const response = await fetch(`/api/activity/${this.props.activity.id}`, {
       method: 'DELETE',
       headers: {
