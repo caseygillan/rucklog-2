@@ -115,15 +115,12 @@ class ActivityPage extends Component {
 
   onStop = async () => {
     clearInterval(this.startTimer);
-    if (window.confirm('Done With This Activity? You Can Delete Later From Profile Page.')) {
+    alert(`Distance: ${this.state.distance} mi\nDuration: ${this.state.hour}:${this.state.minute}:${this.state.second}\nRuck Weight: ${this.state.ruckWeight} lbs\nClick OK to Save`);
       await this.setState({
         stopped: true,
       });
       this.ruckPower();
       this.createActivity();
-    } else {
-      this.startTimer = setInterval(this.timer, 1000);
-    }
   }
 
   ruckPower = () => {
@@ -188,7 +185,7 @@ class ActivityPage extends Component {
           </div>
         )}
         <button className="start-button" onClick={this.onStart}>START</button>
-        <button className="stop-button" onClick={this.onStop}>STOP</button>
+        <Link to="/profile"><button className="stop-button" onClick={this.onStop}>STOP</button></Link>
       </div>
     )
   }
