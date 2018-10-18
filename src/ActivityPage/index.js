@@ -85,7 +85,7 @@ class ActivityPage extends Component {
       distance += window.google.maps.geometry.spherical.computeDistanceBetween(pos1, pos2);
     };
     this.setState({
-      distance: distance * 0.000621371
+      distance: parseFloat((distance * 0.000621371).toFixed(1))
     });
   };
 
@@ -117,12 +117,12 @@ class ActivityPage extends Component {
 
   onStop = async () => {
     clearInterval(this.startTimer);
-    alert(`Distance: ${this.state.distance} mi\nDuration: ${this.state.hour}:${this.state.minute}:${this.state.second}\nRuck Weight: ${this.state.ruckWeight} lbs\nClick OK to Save`);
       await this.setState({
         stopped: true,
       });
       this.ruckPower();
       this.createActivity();
+      alert(`Distance: ${this.state.distance} mi\nDuration: ${this.state.hour}:${this.state.minute}:${this.state.second}\nRuck Weight: ${this.state.ruckWeight} lbs`);
   }
 
   ruckPower = () => {
