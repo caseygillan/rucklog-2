@@ -8,7 +8,7 @@ class ActivityPage extends Component {
     this.state = {
       user: '',
       date: '',
-      distance: 0,
+      distance: 10,
       path: [],
       hour: '00',
       minute: '00',
@@ -124,11 +124,11 @@ class ActivityPage extends Component {
 
   onStop = async () => {
     clearInterval(this.startTimer);
-    this.setState({
+    await this.setState({
       stopped: true,
+      powerScore: this.ruckPower()
     });
     alert(`Distance: ${this.state.distance} mi\nDuration: ${this.state.hour}:${this.state.minute}:${this.state.second}\nRuck Weight: ${this.state.ruckWeight} lbs`);
-    this.ruckPower();
     this.createActivity();
   }
 
@@ -139,9 +139,7 @@ class ActivityPage extends Component {
     const convertedTime = hour + minute + second;
     const rW = this.state.ruckWeight * this.state.distance;
     const powerScore = (rW / convertedTime / 60).toFixed(2);
-    this.setState({
-      powerScore: powerScore
-    })
+    return powerScore;
   }
 
   createActivity = async () => {
@@ -199,7 +197,7 @@ class ActivityPage extends Component {
               <span>Ruck Weight: </span>
               <span>{this.state.ruckWeight} lbs</span>
             </div>
-            <Link to="/profile"><button className="stop-button" onClick={this.onStop}>STOP</button></Link>
+            <button className="stop-button" onClick={this.onStop}>STOP</button>
           </div>
         )}
       </div>
