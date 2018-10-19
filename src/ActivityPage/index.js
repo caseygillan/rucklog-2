@@ -8,7 +8,7 @@ class ActivityPage extends Component {
     this.state = {
       user: '',
       date: '',
-      distance: 10,
+      distance: 0,
       path: [],
       hour: '00',
       minute: '00',
