@@ -104,8 +104,7 @@ class Profile extends Component {
       <div className="Profile">
         <div className="profile-header">
           <div className="title-small">RUCK LOG 2.0</div>
-          <Link to="/activity"><button className="new-activity">Start New Ruck</button></Link>
-          <Link to="/"><button className="logout" onClick={this.logout}>Log Out</button></Link>
+          <Link to="/activity"><button className="new-activity-button">Start New Ruck</button></Link>
         </div>
         <div className="info">
           {!this.state.edit && (
@@ -128,17 +127,18 @@ class Profile extends Component {
           <div>Activities</div>
         </div>
         <div className="activity-list">
-        {this.state.activityList.reverse().map((activity, index) => {
-          return (
-            <Activity
-              key={index}
-              activity={activity}
-              delete={this.fetchActivities}
-            />
-          )
-        })
-        }
+          {this.state.activityList.reverse().map((activity, index) => {
+            return (
+              <Activity
+                key={index}
+                activity={activity}
+                delete={this.fetchActivities}
+              />
+            )
+          })
+          }
         </div>
+        <Link to="/"><button className="logout" onClick={this.logout}>Log Out</button></Link>
       </div>
     )
   }

@@ -83,7 +83,7 @@ class Register extends Component {
           <input className="registration-input" type="text" value={this.state.email} placeholder="Email" onChange={this.onInputChange} name="email" />
           <input className="registration-input" type="password" value={this.state.password} placeholder="Password" onChange={this.onInputChange} name="password" />
         </form>
-        <button type="button" onClick={this.register} className="register-button">Register</button>
+        <button className="register-button" type="button" onClick={this.register} className="register-button">Register</button>
         <div>{this.state.errorMessage}</div>
       </div>
     )

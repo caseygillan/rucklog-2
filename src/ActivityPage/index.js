@@ -183,19 +183,25 @@ class ActivityPage extends Component {
         </div>
         {this.state.stopped && (
           <div>
-            <span>Enter Ruck Weight:</span>
-            <input className="ruck-weight" name="ruckWeight" type="number" placeholder="lbs" size="4" onChange={this.onInputChange} />
-            <button className="start-button" onClick={this.onStart}>START</button>
+            <div>
+              <span>Enter Ruck Weight:</span>
+              <input className="ruck-weight" name="ruckWeight" type="number" placeholder="lbs" size="4" onChange={this.onInputChange} />
+            </div>
+            <div>
+              <button className="start-button" onClick={this.onStart}>START</button>
+            </div>
+            <Link to="/profile"><button className="profile-button">BACK TO PROFILE</button></Link>
           </div>
         )}
         {!this.state.stopped && (
           <div>
-            <span>Ruck Weight: </span>
-            <span>{this.state.ruckWeight} lbs</span>
+            <div>
+              <span>Ruck Weight: </span>
+              <span>{this.state.ruckWeight} lbs</span>
+            </div>
             <Link to="/profile"><button className="stop-button" onClick={this.onStop}>STOP</button></Link>
           </div>
         )}
-        <Link to="/profile"><button className="profile-button">BACK TO PROFILE</button></Link>
       </div>
     )
   }
