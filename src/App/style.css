@@ -150,20 +150,20 @@ hr {
 }
 
 .new-activity-button {
-  padding: 20px;
+  padding: 10px;
   background-color: grey;
   border-radius: 5px;
   color: #111111;
-  font-size: 16px;
+  font-size: 12px;
 }
 
 .logout {
-  padding: 20px;
+  padding: 10px;
   background-color: grey;
   border-radius: 5px;
   color: #111111;
   margin: 15px;
-  font-size: 20px;
+  font-size: 12px;
 }
 
 span {
