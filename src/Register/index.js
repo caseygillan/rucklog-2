@@ -76,12 +76,12 @@ class Register extends Component {
     }
     return (
       <div className="Register">
-        <div className="title">RUCKLOG 2.0</div>
+        <div className="title">RUCK LOG 2.0</div>
         <form className="register-form" onSubmit={this.register}>
-          <input className="registration-input" type="text" value={this.state.firstName} placeholder="First Name" onChange={this.onInputChange} name="firstName" />
-          <input className="registration-input" type="text" value={this.state.lastName} placeholder="Last Name" onChange={this.onInputChange} name="lastName" />
-          <input className="registration-input" type="text" value={this.state.email} placeholder="Email" onChange={this.onInputChange} name="email" />
-          <input className="registration-input" type="password" value={this.state.password} placeholder="Password" onChange={this.onInputChange} name="password" />
+          <input className="registration-input" type="text" value={this.state.firstName} placeholder="First Name" onChange={this.onInputChange} name="firstName" /><hr />
+          <input className="registration-input" type="text" value={this.state.lastName} placeholder="Last Name" onChange={this.onInputChange} name="lastName" /><hr />
+          <input className="registration-input" type="text" value={this.state.email} placeholder="Email" onChange={this.onInputChange} name="email" /><hr />
+          <input className="registration-input" type="password" value={this.state.password} placeholder="Password" onChange={this.onInputChange} name="password" /><hr />
         </form>
         <button className="register-button" type="button" onClick={this.register} className="register-button">Register</button>
         <div>{this.state.errorMessage}</div>

@@ -177,13 +177,13 @@ class ActivityPage extends Component {
         <div className="title">RUCK LOG 2.0</div>
         <div className="tracker">
           <div className="distance">{this.state.distance}<br /><span>DISTANCE</span></div>
-          <div className="timer">{this.state.hour}:{this.state.minute}:{this.state.second}<br /><span>TIME</span></div>
+          <div className="timer">{this.state.hour}:{this.state.minute}:{this.state.second}<br /><span>DURATION</span></div>
         </div>
         {this.state.stopped && (
           <div>
             <div>
               <span>Enter Ruck Weight:</span>
-              <input className="ruck-weight" name="ruckWeight" type="number" placeholder="lbs" size="4" onChange={this.onInputChange} />
+                <input className="ruck-weight" name="ruckWeight" type="number" placeholder="lbs" size="4" onChange={this.onInputChange} />
             </div>
             <div>
               <button className="start-button" onClick={this.onStart}>START</button>

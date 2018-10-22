@@ -49,7 +49,7 @@ class Profile extends Component {
       lifetimeMiles = lifetimeMiles + activity.distance;
     });
     this.setState({
-      lifetimeMiles: lifetimeMiles
+      lifetimeMiles: lifetimeMiles.toFixed(2)
     })
   };
 

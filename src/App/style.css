@@ -1,8 +1,8 @@
 body {
   text-align: center;
   font-family: 'Oswald', sans-serif;
-  background-color: rgb(1, 22, 39);
-  color: rgb(162, 191, 252);
+  background-color: #111111;
+  color: #ffffff;
 }
 
 .App {
@@ -11,10 +11,13 @@ body {
 
 .Profile {
   height: 100%;
+  max-width: 800px;
+  margin: 0 auto;
 }
 
 .title {
   font-size: 60px;
+  margin: 20px;
 }
 
 .login-form {
@@ -24,12 +27,30 @@ body {
   width: 200px;
 }
 
+.login-input {
+  background-color: #111111;
+  border: none;
+  font-size: 20px;
+  margin: 10px;
+  color: grey;
+}
+
+hr {
+  margin: 5px 0;
+  border: 1px solid grey;
+}
+
 .login-button {
-  height: 30px;
-  background-color: rgb(92, 123, 147);
-  border-radius: 5px;
-  color: rgb(162, 191, 252);
-  margin: 20px;
+  padding: 10px;
+  background-color: grey;
+  border-radius: 12px;
+  color: #111111;
+  margin: 30px;
+  font-size: 20px;
+}
+
+.register-link {
+  color: grey;
 }
 
 .register-form {
@@ -40,16 +61,20 @@ body {
 }
 
 .register-button {
-  height: 30px;
-  background-color: rgb(92, 123, 147);
-  border-radius: 5px;
-  color: rgb(162, 191, 252);
+  padding: 10px;
+  background-color: grey;
+  border-radius: 12px;
+  color: #111111;
   margin: 20px;
+  font-size: 20px;
 }
 
-input {
+.registration-input {
+  background-color: #111111;
+  border: none;
+  font-size: 20px;
   margin: 10px;
-  height: 20px;
+  color: grey;
 }
 
 .profile-header {
@@ -70,7 +95,7 @@ input {
 .activity-list {
   display: flex;
   flex-direction: column;
-  height: 70%;
+  height: 60%;
   overflow: auto;
 }
 
@@ -88,16 +113,16 @@ input {
 
 .delete-button {
   height: 20px;
-  background-color: rgb(92, 123, 147);
+  background-color: grey;;
   border-radius: 5px;
-  color: rgb(162, 191, 252);
+  color: #111111;
 }
 
 .edit-button {
   height: 20px;
-  background-color: rgb(92, 123, 147);
+  background-color: grey;
   border-radius: 5px;
-  color: rgb(162, 191, 252);
+  color: #111111;
   margin: 15px;
 }
 
@@ -125,19 +150,20 @@ input {
 }
 
 .new-activity-button {
-  height: 50px;
-  width: 150px;
-  background-color: rgb(162, 191, 252);
+  padding: 20px;
+  background-color: grey;
   border-radius: 5px;
-  color: rgb(92, 123, 147);
+  color: #111111;
+  font-size: 16px;
 }
 
 .logout {
-  height: 20px;
-  background-color: rgb(92, 123, 147);
+  padding: 20px;
+  background-color: grey;
   border-radius: 5px;
-  color: rgb(162, 191, 252);
+  color: #111111;
   margin: 15px;
+  font-size: 20px;
 }
 
 span {
@@ -145,9 +171,11 @@ span {
 }
 
 .ruck-weight {
-  width: 30px;
-  height: 30px;
+  width: 40px;
+  height: 35px;
   margin-left: 10px;
+  background-color: #111111;
+  font-size: 20px;
 }
 
 .start-button {
@@ -167,7 +195,7 @@ span {
 }
 
 .profile-button {
-  background-color: rgb(92, 123, 147);
+  background-color: grey;
   height: 30px;
   width: 150px;
   border-radius: 12px;

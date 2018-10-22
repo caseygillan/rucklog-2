@@ -1,12 +1,6 @@
 import React, { Component } from "react";
 
 class Activity extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-
-    }
-  }
 
   delete = async () => {
     await fetch(`/api/activity/${this.props.activity.id}`, {

@@ -60,12 +60,12 @@ class Login extends Component {
       <div className="Login">
         <div className="title">RUCK LOG 2.0</div>
         <form className="login-form" onSubmit={this.login}>
-          <input type="text" value={this.state.email} placeholder="Email" onChange={this.onInputChange} name="email" />
-          <input type="password" value={this.state.password} placeholder="Password" onChange={this.onInputChange} name="password" />
+          <input className="login-input" type="text" value={this.state.email} placeholder="Email" onChange={this.onInputChange} name="email" /><hr />
+          <input className="login-input" type="password" value={this.state.password} placeholder="Password" onChange={this.onInputChange} name="password" /><hr />
           <button className="login-button" type="button" onClick={this.login}>Log In</button>
           <div>{this.state.errorMessage && <p className="login-error-message">{this.state.errorMessage}</p>}</div>
         </form>
-        <div>New Here? Click To <Link to="/register">Register</Link></div>
+        <div>New Here? Click To <Link to="/register" className="register-link">Register</Link></div>
       </div>
     )
   }
