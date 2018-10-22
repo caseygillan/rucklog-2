@@ -58,6 +58,7 @@ class Profile extends Component {
     let count = 0;
     this.state.activityList.map((activity) => {
       count = count + 1;
+      console.log(count);
       powerScore = (powerScore + activity.powerScore) / count
     });
     this.setState({
