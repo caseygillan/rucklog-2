@@ -15,7 +15,7 @@ class Login extends Component {
   login = async e => {
     e.preventDefault();
     const requestBody = JSON.stringify({
-      email: this.state.email,
+      email: this.state.email.toLowerCase(),
       password: this.state.password,
     });
 

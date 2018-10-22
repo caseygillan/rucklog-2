@@ -72,12 +72,9 @@ class ActivityPage extends Component {
           return { path: [...prevState.path, pos] }
         });
 
-        console.log(activityPage.state.path);
-
         activityPage.calcPathLength(activityPage.state.path);
 
         if (activityPage.state.stopped === true) {
-          console.log('still running');
           navigator.geolocation.clearWatch(watchID);
         }
       });
