@@ -85,7 +85,7 @@ hr {
 
 .info {
   text-align: left;
-  font-size: 30px;
+  font-size: 25px;
 }
 
 .name {
@@ -123,7 +123,7 @@ hr {
   background-color: grey;
   border-radius: 5px;
   color: #111111;
-  margin: 15px;
+  margin: 10px;
 }
 
 .activity-info {
