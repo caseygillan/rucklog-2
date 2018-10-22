@@ -47,10 +47,12 @@ hr {
   color: #111111;
   margin: 30px;
   font-size: 20px;
+  cursor: pointer;
 }
 
 .register-link {
   color: grey;
+  cursor: pointer;
 }
 
 .register-form {
@@ -67,6 +69,7 @@ hr {
   color: #111111;
   margin: 20px;
   font-size: 20px;
+  cursor: pointer;
 }
 
 .registration-input {
@@ -116,6 +119,7 @@ hr {
   background-color: grey;;
   border-radius: 5px;
   color: #111111;
+  cursor: pointer;
 }
 
 .edit-button {
@@ -124,6 +128,16 @@ hr {
   border-radius: 5px;
   color: #111111;
   margin: 10px;
+  cursor: pointer;
+}
+
+.update-button {
+  height: 20px;
+  background-color: grey;
+  border-radius: 5px;
+  color: #111111;
+  margin: 15px;
+  cursor: pointer;
 }
 
 .activity-info {
@@ -155,6 +169,7 @@ hr {
   border-radius: 5px;
   color: #111111;
   font-size: 12px;
+  cursor: pointer;
 }
 
 .logout {
@@ -164,6 +179,7 @@ hr {
   color: #111111;
   margin: 15px;
   font-size: 12px;
+  cursor: pointer;
 }
 
 span {
@@ -185,6 +201,7 @@ span {
   height: 40px;
   width: 200px;
   border-radius: 12px;
+  cursor: pointer;
 }
 
 .stop-button {
@@ -193,6 +210,7 @@ span {
   height: 40px;
   width: 200px;
   border-radius: 12px;
+  cursor: pointer;
 }
 
 .profile-button {
@@ -201,6 +219,7 @@ span {
   width: 150px;
   border-radius: 12px;
   margin: 20px;
+  cursor: pointer;
 }
 
 
