@@ -85,7 +85,7 @@ hr {
 
 .info {
   text-align: left;
-  font-size: 20px;
+  font-size: 30px;
 }
 
 .name {
@@ -95,7 +95,7 @@ hr {
 .activity-list {
   display: flex;
   flex-direction: column;
-  height: 60%;
+  height: 50%;
   overflow: auto;
 }
 
